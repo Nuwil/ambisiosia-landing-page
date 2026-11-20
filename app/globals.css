@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+
+  --color-paper: #f5f2eb;
+  --color-paper-2: #ece8df;
+  --color-card: #fdfcf9;
+  --color-line: #d8d2c4;
+  --color-ink: #1a1916;
+  --color-ink-2: #43403a;
+  --color-muted: #6c675b;
+  --color-accent: #8f2f33;
+
+  /* Sharp edges everywhere: even an accidental rounded-* utility resolves to a square corner. */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  button, input, select, textarea { border-radius: 0; font: inherit; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.16em] text-muted; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2.5 rounded-none border px-6 py-3.5 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 border-ink bg-ink text-paper hover:bg-transparent hover:text-ink; }
+  .btn-outline { @apply inline-flex items-center justify-center gap-2.5 rounded-none border px-6 py-3.5 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper; }
+  .field { @apply w-full rounded-none border border-ink/30 bg-card px-3.5 py-3 text-sm text-ink transition-colors duration-200 placeholder:text-muted/70 hover:border-ink/60 focus:border-ink focus:outline-none; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+}
